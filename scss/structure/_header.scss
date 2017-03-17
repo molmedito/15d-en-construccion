@@ -1,0 +1,15 @@
+header {
+    #logo-15d {
+        img {
+            
+        }
+        .slogan-15d {
+            @include textos($titillium, 16px, 400, italic, center, white);
+        }
+        &.visible-mobile {
+            img {
+                max-width: 150px;
+            }
+        }
+    }
+}

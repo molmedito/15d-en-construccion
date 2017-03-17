@@ -1,0 +1,7 @@
+#body-wrapper {
+    background-image: url(../assets/bg-code-mobile.jpg);
+    background-size: cover;
+    @media #{$mobile-lg}{
+        background-image: url(../assets/bg-code-desktop.jpg);
+    }
+}
