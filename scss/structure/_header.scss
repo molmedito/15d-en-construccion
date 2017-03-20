@@ -9,6 +9,7 @@ header {
             }
         }
         .slogan-15d {
+            margin-top: 5px;
             @include textos($titillium, 16px, 400, initial, italic, center, white);
         }
     }

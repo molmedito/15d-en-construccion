@@ -15,31 +15,31 @@
         <header class="main-header flex-item">
             <figure id="logo-15d" class="visible-mobile">
                 <img src="assets/logo_15d-mobile.svg" alt="">
-                <p class="slogan-15d">Desarrollador Web</p>
+                <p class="slogan-15d">Marcelo Olmedo | Desarrollador Web</p>
             </figure>
             <figure id="logo-15d" class="hidden-mobile">
                 <img src="assets/logo_15d-desktop.svg" alt="">
-                <p class="slogan-15d">Desarrollador Web</p>
+                <p class="slogan-15d">Marcelo Olmedo | Desarrollador Web</p>
             </figure>
         </header>
         <main class="main-body flex-item">
             <h1><small>Mi sitio está</small>en construcción</h1>
-            <h6>Si necesitas cotizar o hacerme alguna sugerencia, escribeme en este formulario:</h6>
+            <h6>Si necesitas cotizar tu propio <strong>sitio web</strong>, escribeme en este formulario:</h6>
             <form id="form-contacto" class="flex-grid-column" data-parsley-validate method="POST" action="php/form-contacto.php">
                 <div class="field">
-                    <label for="nombre">Nombre*</label>
+                    <label for="nombre">Nombre</label>
                     <input name="nombre" type="text" required data-parsley-required-message="El nombre es requerido">
                 </div>
                 <div class="field">
-                    <label for="email">E-mail*</label>
+                    <label for="email">E-mail</label>
                     <input name="email" type="email" data-parsley-trigger="change" data-parsley-type="email" data-parsley-type-message="Asegurate de que es un e-mail válido" required data-parsley-required-message="El e-mail es requerido">
                 </div>
                 <div class="field">
                     <label for="empresa">Empresa</label>
-                    <input name="empresa" type="text">
+                    <input name="empresa" type="text" required data-parsley-required-message="La empresa es requerida">
                 </div>
                 <div class="field">
-                    <label for="mensaje">Mensaje*</label>
+                    <label for="mensaje">Mensaje</label>
                     <textarea name="mensaje" cols="30" rows="10" required  data-parsley-required-message="El mensaje es requerido" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Son 20 caracteres mínimo..." data-parsley-validation-threshold="10"></textarea>
                 </div>
                 <div class="checkbox">
@@ -52,14 +52,15 @@
                 <div class="buttons">
                     <button type="submit">Enviar</button>
                 </div>
+                <div class="mensaje" style="display: none;"></div>
             </form>
         </main>
         <footer class="main-footer flex-item">
             <ul class="main-rrss flex-grid-row">
-                <li><a href="#0"><img src="assets/facebook.svg" alt=""></a></li>
-                <li><a href="#0"><img src="assets/behance.svg" alt=""></a></li>
-                <li><a href="#0"><img src="assets/linkedin.svg" alt=""></a></li>
-                <li><a href="#0"><img src="assets/email.svg" alt=""></a></li>
+                <li><a href="https://www.facebook.com/15diseno/"><img src="assets/facebook.svg" alt="Icono Facebook"></a></li>
+                <li><a href="https://www.behance.net/15d"><img src="assets/behance.svg" alt="Icono Behance"></a></li>
+                <li><a href="https://www.linkedin.com/in/molmedito/"><img src="assets/linkedin.svg" alt=""></a></li>
+                <li><a href="mailto:marcelo@15d.cl"><img src="assets/email.svg" alt="Icono E-mail"></a></li>
             </ul>
         </footer>
     </div>
@@ -69,11 +70,42 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            //
+            // Activar Parsley
             $('#form-contacto').parsley();
 
-            //
+            // Función al enviar formulario
+            $('#form-contacto').on('submit', function(e){
+                e.preventDefault();
+                var form = $(this),
+                    mensaje = 'Tu mensaje ha sido recibido. Estaremos en contacto.';
+
+                form.parsley().validate();
+
+                if (form.parsley().isValid()){
+                    // Enviar formulario al controlador de envio de e-mail
+                    $.post('php/form-contacto.php', form.serialize());
+
+                    // Enviar formulario al controlador de Newsletter
+                    if(form.find('input[name=news]').is(':checked')){
+                        $.post('php/form-newsletter.php', form.serialize());
+                        mensaje += '<br />También te suscribiste a mi Newsletter. Pronto te llegarán nuestras novedades.';
+                    }
+
+                    // Mostrar mensaje
+                    form.find('.mensaje').show().html('').append('<p>'+mensaje+'</p>');
+                    form.find('button[type=submit]').text('Enviado').prop('disabled', true);
+                }
+            });
+
+            /***************************************/
+
+            // Función para animación de label en el formulario
             $('.main-body form .field input, .main-body form .field textarea').on('focus blur', function(e){
+                // Limpiar mensaje y botón submit
+                $('#form-contacto').find('button[type=submit]').text('Enviar').prop('disabled', false);
+                $('#form-contacto').find('.mensaje').hide();
+
+                // Ejecuta la función subir o bajar etiqueta
                 if(e.type === 'focus'){
                     $(this).prev().addClass('js-topUp').removeClass('js-topDown');
                 } else if(e.type === 'blur'){
@@ -83,8 +115,13 @@
                 }
             });
 
-            //
+            // Función para Checkbox
             $('.checkbox-wrapper label').click(function(){
+                // Limpiar mensaje y botón submit
+                $('#form-contacto').find('button[type=submit]').text('Enviar').prop('disabled', false);
+                $('#form-contacto').find('.mensaje').hide();
+
+                // Al clickear el label, ejecuta checkbox
                 if($(this).siblings('input').is(':checked')){
                     $(this).removeClass('checked');
                     $(this).siblings('input').prop('checked', false);
@@ -92,8 +129,6 @@
                     $(this).addClass('checked');
                     $(this).siblings('input').prop('checked', true);
                 }
-
-                console.log($(this).siblings('input').is(':checked'));
             });
         });
     </script>

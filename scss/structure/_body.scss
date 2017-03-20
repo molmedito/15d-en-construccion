@@ -18,7 +18,7 @@
     }
     h6 {
         margin-top: 30px;
-        @include textos($titillium, 16px, 300, initial, normal, center, white);
+        @include textos($titillium, 20px, 300, initial, normal, center, white);
     }
 
     form {
@@ -43,11 +43,15 @@
             }
             input {
                 height: 43px;
+                -webkit-appearance: none;
+                border-radius: 0;
             }
             textarea {
                 resize: none;
                 padding-top: 10px;
                 max-height: 150px;
+                -webkit-appearance: none;
+                border-radius: 0;
             }
             .parsley-errors-list {
                 li {
@@ -106,9 +110,21 @@
                 border: 1px solid white;
                 margin: auto;
                 display: block;
+                cursor: pointer;
                 @include textos($titillium, 14px, 300, initial, normal, center, white);
 
-
+                &:disabled {
+                    opacity: 0.5;
+                    cursor: initial;
+                }
+            }
+        }
+        .mensaje {
+            margin-top: 30px;
+            padding: 15px;
+            border: 1px solid white;
+            p {
+                @include textos($titillium, 14px, 400, initial, normal, center, white);
             }
         }
     }

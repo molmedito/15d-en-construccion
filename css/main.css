@@ -201,6 +201,7 @@ header #logo-15d img {
       max-width: 300px; } }
 
 header #logo-15d .slogan-15d {
+  margin-top: 5px;
   font-family: "Titillium Web", sans-serif;
   font-size: 0.8rem;
   line-height: initial;
@@ -244,7 +245,7 @@ header #logo-15d .slogan-15d {
   .main-body h6 {
     margin-top: 30px;
     font-family: "Titillium Web", sans-serif;
-    font-size: 0.8rem;
+    font-size: 1rem;
     line-height: initial;
     font-weight: 300;
     font-style: normal;
@@ -280,11 +281,15 @@ header #logo-15d .slogan-15d {
         text-align: left;
         color: white; }
       .main-body form .field input {
-        height: 43px; }
+        height: 43px;
+        -webkit-appearance: none;
+        border-radius: 0; }
       .main-body form .field textarea {
         resize: none;
         padding-top: 10px;
-        max-height: 150px; }
+        max-height: 150px;
+        -webkit-appearance: none;
+        border-radius: 0; }
       .main-body form .field .parsley-errors-list li {
         font-family: "Titillium Web", sans-serif;
         font-size: 0.7rem;
@@ -343,6 +348,7 @@ header #logo-15d .slogan-15d {
       border: 1px solid white;
       margin: auto;
       display: block;
+      cursor: pointer;
       font-family: "Titillium Web", sans-serif;
       font-size: 0.7rem;
       line-height: initial;
@@ -350,6 +356,21 @@ header #logo-15d .slogan-15d {
       font-style: normal;
       text-align: center;
       color: white; }
+      .main-body form .buttons button:disabled {
+        opacity: 0.5;
+        cursor: initial; }
+    .main-body form .mensaje {
+      margin-top: 30px;
+      padding: 15px;
+      border: 1px solid white; }
+      .main-body form .mensaje p {
+        font-family: "Titillium Web", sans-serif;
+        font-size: 0.7rem;
+        line-height: initial;
+        font-weight: 400;
+        font-style: normal;
+        text-align: center;
+        color: white; }
 
 footer {
   margin-top: 50px; }
