@@ -1,0 +1,80 @@
+// Visible
+.visible-mobile {
+    @media #{$tablet}{
+        display: none;
+    }
+}
+.visible-tablet {
+    @media #{$mobile-max}{
+        display: none;
+    }
+    @media #{$desktop-sm}{
+        display: none;
+    }
+}
+.visible-desktop-sm {
+    @media #{$tablet-max}{
+        display: none;
+    }
+    @media #{$desktop-lg}{
+        display: none;
+    }
+}
+.visible-desktop-lg {
+    @media #{$desktop-max}{
+        display: none;
+    }
+}
+.visible-desktop {
+    @media #{$tablet-max}{
+        display: none;
+    }
+}
+
+// Hidden
+.hidden-mobile {
+    @media #{$mobile-max}{
+        display: none;
+    }
+}
+.hidden-tablet {
+    @media #{$tablet} and #{$tablet-max}{
+        display: none;
+    }
+}
+.hidden-desktop-sm {
+    @media #{$desktop-sm} and #{$desktop-max}{
+        display: none;
+    }
+}
+.hidden-desktop-lg {
+    @media #{$desktop-lg}{
+        display: none;
+    }
+}
+.hidden-desktop {
+    @media #{$desktop-sm}{
+        display: none;
+    }
+}
+
+.js-topUp {
+    animation-name: topUp;
+    animation-duration: 0.3s;
+    animation-timing-function: ease;
+    top: 0 !important;
+}
+.js-topDown {
+    animation-name: topDown;
+    animation-duration: 0.3s;
+    animation-timing-function: ease;
+}
+
+@keyframes topUp {
+    from {top: inherit;}
+    to {top: 0;}
+}
+@keyframes topDown {
+    from {top: 0;}
+    to {top: inherit;}
+}

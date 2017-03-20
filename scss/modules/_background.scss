@@ -1,7 +1,37 @@
-#body-wrapper {
+html {
+    @media #{$tablet}{
+        height: auto;
+    }
+}
+body {
+    @media #{$tablet}{
+        height: 100%;
+    }
+}
+
+.background-img {
     background-image: url(../assets/bg-code-mobile.jpg);
-    background-size: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    filter: blur(3px);
     @media #{$mobile-lg}{
         background-image: url(../assets/bg-code-desktop.jpg);
+        background-size: auto 100%;
+    }
+}
+
+.filter {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    &.filter--green {
+        background-color: rgba(128, 212, 67, 0.9);
     }
 }

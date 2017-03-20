@@ -7,16 +7,17 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    
-    <section id="body-wrapper" class="flex-grid-column">
+    <div class="background-img">
         <div class="filter filter--green"></div>
-            
+    </div>
+
+    <div class="body-wrapper">
         <header class="main-header flex-item">
             <figure id="logo-15d" class="visible-mobile">
                 <img src="assets/logo_15d-mobile.svg" alt="">
                 <p class="slogan-15d">Desarrollador Web</p>
             </figure>
-            <figure id="logo-15d" class="visible-desktop">
+            <figure id="logo-15d" class="hidden-mobile">
                 <img src="assets/logo_15d-desktop.svg" alt="">
                 <p class="slogan-15d">Desarrollador Web</p>
             </figure>
@@ -24,18 +25,29 @@
         <main class="main-body flex-item">
             <h1><small>Mi sitio está</small>en construcción</h1>
             <h6>Si necesitas cotizar o hacerme alguna sugerencia, escribeme en este formulario:</h6>
-            <form action="">
+            <form id="form-contacto" class="flex-grid-column" data-parsley-validate action="">
                 <div class="field">
-                    <input data-placeholder="Nombre*" type="text">
+                    <label for="nombre">Nombre*</label>
+                    <input name="nombre" type="text" required data-parsley-required-message="El nombre es requerido">
                 </div>
                 <div class="field">
-                    <input data-placeholder="E-mail*" type="text">
+                    <label for="email">E-mail*</label>
+                    <input name="email" type="email" data-parsley-trigger="change" data-parsley-type="email" data-parsley-type-message="Asegurate de que es un e-mail válido" required data-parsley-required-message="El e-mail es requerido">
                 </div>
                 <div class="field">
-                    <input data-placeholder="Empresa" type="text">
+                    <label for="empresa">Empresa</label>
+                    <input name="empresa" type="text">
                 </div>
                 <div class="field">
-                    <textarea data-placeholder="Mensaje*" name="" id="" cols="30" rows="10"></textarea>
+                    <label for="mensaje">Mensaje*</label>
+                    <textarea name="mensaje" cols="30" rows="10" required  data-parsley-required-message="El mensaje es requerido" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Son 20 caracteres mínimo..." data-parsley-validation-threshold="10"></textarea>
+                </div>
+                <div class="checkbox">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" name="news">
+                        <label for="news"></label>
+                    </div>
+                    <p>Deseo suscribirme al newsletter con estos datos</p>
                 </div>
                 <div class="buttons">
                     <button type="submit">Enviar</button>
@@ -43,16 +55,48 @@
             </form>
         </main>
         <footer class="main-footer flex-item">
-            <ul class="main-rrss">
+            <ul class="main-rrss flex-grid-row">
                 <li><a href="#0"><img src="assets/facebook.svg" alt=""></a></li>
                 <li><a href="#0"><img src="assets/behance.svg" alt=""></a></li>
                 <li><a href="#0"><img src="assets/linkedin.svg" alt=""></a></li>
                 <li><a href="#0"><img src="assets/email.svg" alt=""></a></li>
             </ul>
         </footer>
-        
-    </section>
-    
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+    <script src="js/parsley.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //
+            $('#form-contacto').parsley();
+
+            //
+            $('.main-body form .field input, .main-body form .field textarea').on('focus blur', function(e){
+                if(e.type === 'focus'){
+                    $(this).prev().addClass('js-topUp').removeClass('js-topDown');
+                } else if(e.type === 'blur'){
+                    if($(this).val() <= 0){
+                        $(this).prev().addClass('js-topDown').removeClass('js-topUp');
+                    }
+                }
+            });
+
+            //
+            $('.checkbox-wrapper label').click(function(){
+                if($(this).siblings('input').is(':checked')){
+                    $(this).removeClass('checked');
+                    $(this).siblings('input').prop('checked', false);
+                } else {
+                    $(this).addClass('checked');
+                    $(this).siblings('input').prop('checked', true);
+                }
+
+                console.log($(this).siblings('input').is(':checked'));
+            });
+        });
+    </script>
 </body>
 <!-- Scripts secction -->
 

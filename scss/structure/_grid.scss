@@ -9,3 +9,15 @@
         align-items: center;
     }
 }
+
+.flex-grid-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .flex-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}

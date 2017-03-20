@@ -1,1 +1,115 @@
-/* ESTILOS */
+.body-wrapper {
+    position: relative;
+    z-index: 3;
+    padding: 40px 15px 25px;
+}
+
+.main-body {
+    margin-top: 40px;
+
+    h1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include textos($titillium, 40px, 600, 1.2, normal, center, white);
+        small {
+            @include textos($titillium, 24px, 300, initial, normal, center, white);
+        }
+    }
+    h6 {
+        margin-top: 30px;
+        @include textos($titillium, 16px, 300, initial, normal, center, white);
+    }
+
+    form {
+        width: 100%;
+        margin: auto;
+        margin-top: 30px;
+        max-width: 500px;
+        .field {
+            position: relative;
+            padding: 15px 0;
+
+            label {
+                position: absolute;
+                top: 20px;
+                left: 0;
+                @include textos($titillium, 14px, 400, initial, normal, center, white);
+            }
+            input, textarea {
+                border-bottom: 1px solid white;
+                width: 100%;
+                @include textos($titillium, 14px, 300, initial, normal, left, white);
+            }
+            input {
+                height: 43px;
+            }
+            textarea {
+                resize: none;
+                padding-top: 10px;
+                max-height: 150px;
+            }
+            .parsley-errors-list {
+                li {
+                    @include textos($titillium, 14px, 600, initial, normal, left, #ef4a4a);
+                }
+            }
+        }
+        .checkbox {
+            padding-bottom: 30px;
+            display: flex;
+
+            .checkbox-wrapper {
+                width: 20px;
+                position: relative;
+
+                label {
+                    width: 20px;
+                    height: 20px;
+                    cursor: pointer;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    border: 1px solid white;
+
+                    &.checked:after {
+                        content: '';
+                        width: 9px;
+                        height: 5px;
+                        position: absolute;
+                        top: 4px;
+                        left: 4px;
+                        border: 3px solid #fcfff4;
+                        border-top: none;
+                        border-right: none;
+                        background: transparent;
+                        opacity: 1;
+                        transform: rotate(-45deg);
+                    }
+                }
+                input[type=checkbox] {
+                    visibility: hidden;
+                }
+            }
+
+            p {
+                @include textos($titillium, 14px, 400, initial, normal, left, white);
+                margin-left: 15px;
+            }
+        }
+        .buttons {
+            button {
+                width: 100%;
+                max-width: 150px;
+                height: 45px;
+                box-sizing: border-box;
+                border: 1px solid white;
+                margin: auto;
+                display: block;
+                @include textos($titillium, 14px, 300, initial, normal, center, white);
+
+
+            }
+        }
+    }
+}

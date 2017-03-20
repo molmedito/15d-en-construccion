@@ -5,7 +5,13 @@ $rem: 20px;
 $titillium: 'Titillium Web', sans-serif;
 
 // Tamaños pantalla (Mobile First)
+$mobile-sm: '(min-width: 0)';
 $mobile-lg: '(min-width: 480px)';
 $tablet: '(min-width: 768px)';
 $desktop-sm: '(min-width: 992px)';
 $desktop-lg: '(min-width: 1200px)';
+
+// Tamaños pantalla (max-width)
+$mobile-max: '(max-width: 767px)';
+$tablet-max: '(max-width: 991px)';
+$desktop-max: '(max-width: 1199px)';

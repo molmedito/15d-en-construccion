@@ -4,9 +4,10 @@
     @return #{$remSize}rem;
 }
 
-@mixin textos($f-family, $f-size, $f-weight, $f-style, $text-align, $color){
+@mixin textos($f-family, $f-size, $f-weight, $line-height, $f-style, $text-align, $color){
     font-family: $f-family;
     font-size: calcRem($f-size);
+    line-height: $line-height;
     font-weight: $f-weight;
     font-style: $f-style;
     text-align: $text-align;

@@ -1,15 +1,15 @@
 header {
     #logo-15d {
         img {
-            
+            display: block;
+            margin: auto;
+            max-width: 150px;
+            @media #{$tablet}{
+                max-width: 300px;
+            }
         }
         .slogan-15d {
-            @include textos($titillium, 16px, 400, italic, center, white);
-        }
-        &.visible-mobile {
-            img {
-                max-width: 150px;
-            }
+            @include textos($titillium, 16px, 400, initial, italic, center, white);
         }
     }
 }

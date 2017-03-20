@@ -1,6 +1,6 @@
 // Reset
 html {font-size: $rem;}
-body {margin: 0;}
+body {margin: 0; position: relative;}
 ul {
     margin: 0;
     padding: 0;
@@ -8,6 +8,13 @@ ul {
         list-style: none;
     }
 }
-h1, h2, h3, h4, h5, h6, p, figure {
-    margin: 0;
+h1, h2, h3, h4, h5, h6, p, figure {margin: 0;}
+input, textarea, button {
+    background: none;
+    border: none;
+    resize: none;
+
+    &:focus {
+        outline: none;
+    }
 }
